@@ -15,7 +15,7 @@ Member :
 
 2. Karena menurut **Eru** pada saat itu Arda (Bumi) masih terisolasi dengan dunia luar, maka buat agar **Eru** dapat tersambung ke internet.
 
-Tes awal dengan cek koneksi & akses internet (tes awal)
+**- Tes awal dengan cek koneksi & akses internet (tes awal)**
 
 Telnet ke node (contoh Eru):
 
@@ -35,4 +35,66 @@ ping google.com -c 5
 
 Jika ping google.com berhasil, node punya akses internet.
 
+3. Sekarang pastikan agar setiap Ainur (**Client**) dapat terhubung satu sama lain.
+
+**- Set konfigurasi interface**
+
+**Eru**
+
+```bash
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet static
+	address [Prefix IP].1.1
+	netmask 255.255.255.0
+
+auto eth2
+iface eth2 inet static
+	address [Prefix IP].2.1
+	netmask 255.255.255.0
+```
+
+**Melkor**
+
+```bash
+auto eth0
+iface eth0 inet static
+	address [Prefix IP].1.2
+	netmask 255.255.255.0
+	gateway [Prefix IP].1.1
+```
+
+**Manwe**
+
+```bash
+auto eth0
+iface eth0 inet static
+	address [Prefix IP].1.3
+	netmask 255.255.255.0
+	gateway [Prefix IP].1.1
+```
+
+**Varda**
+
+```bash
+auto eth0
+iface eth0 inet static
+	address [Prefix IP].2.2
+	netmask 255.255.255.0
+	gateway [Prefix IP].2.1
+```
+
+**Ulmo**
+
+```bash
+auto eth0
+iface eth0 inet static
+	address [Prefix IP].2.3
+	netmask 255.255.255.0
+	gateway [Prefix IP].2.1
+```
+
+Setelah edit: Apply → restart node (mastiinnya pake `telnet 10.15.43.32 [port]` & `ip a`)
 
