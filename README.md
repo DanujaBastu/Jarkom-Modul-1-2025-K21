@@ -102,5 +102,85 @@ Setelah edit: Apply → restart node (mastiinnya pake `telnet 10.15.43.32 [port]
 
 <img width="1538" height="754" alt="Screenshot 2025-09-30 231046" src="https://github.com/user-attachments/assets/62a47074-2ce1-46e8-a058-e9b3d7bcdb37" />
 
+4. Setelah berhasil terhubung, sekarang **Eru** ingin agar setiap Ainur (**Client**) dapat mandiri. Oleh karena itu pastikan agar setiap **Client** dapat tersambung ke internet.
 
+* Persisten konfigurasi & NAT (supaya client dapat ke internet)
 
+Di Eru buat NAT agar subnet klien bisa melewati interface eth0 (asumsi eth0 ke Internet):
+
+```bash
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s [Prefix IP].0.0/16
+
+cat /etc/resolv.conf
+```
+
+<img width="1144" height="84" alt="Screenshot 2025-09-30 233159" src="https://github.com/user-attachments/assets/b53ce3ca-fd65-46a5-89b7-18e246407074" />
+
+Verifikasi DNS di client (Melkor, dll):
+
+```bash
+echo nameserver 192.168.122.1 > /etc/resolv.conf
+
+cat /etc/resolv.conf
+```
+
+Ping internet:
+
+```bash
+ping google.com -c 5
+```
+
+<img width="1285" height="407" alt="Screenshot 2025-09-30 233822" src="https://github.com/user-attachments/assets/2a7f4f70-a6b7-4be4-ac70-520be43d62c4" />
+
+5. Ainur terkuat **Melkor** tetap berusaha untuk menanamkan kejahatan ke dalam Arda (Bumi). Sebelum terjadi kerusakan, **Eru** dan para Ainur lainnya meminta agar semua konfigurasi tidak hilang saat semua node di restart.
+
+```bash
+sudo nano /root/.bashrc
+```
+
+Isi nano /root/.bashrc
+
+```bash
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# Note: PS1 is set in /etc/profile, and the default umask is defined
+# in /etc/login.defs. You should not need this unless you want different
+# defaults for root.
+# PS1='${debian_chroot:+($debian_chroot)}\h:\w\$ '
+# umask 022
+
+# You may uncomment the following lines if you want `ls' to be colorized:
+# export LS_OPTIONS='--color=auto'
+# eval "$(dircolors)"
+# alias ls='ls $LS_OPTIONS'
+# alias ll='ls $LS_OPTIONS -l'
+# alias l='ls $LS_OPTIONS -lA'
+#
+# Some more alias to avoid making mistakes:
+# alias rm='rm -i'
+# alias cp='cp -i'
+# alias mv='mv -i'
+
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s [Prefix IP].0.0/16
+echo nameserver 192.168.122.1 > /etc/resolv.conf
+```
+
+6. Setelah semua Ainur terhubung ke internet, **Melkor** mencoba menyusup ke dalam komunikasi antara **Manwe** dan **Eru**. Jalankan file berikut (link file) lalu lakukan packet sniffing menggunakan **Wireshark** pada koneksi antara **Manwe** dan **Eru**, lalu terapkan display filter untuk menampilkan semua paket yang berasal dari atau menuju ke **IP Address Manwe**. Simpan hasil capture tersebut sebagai bukti.
+
+* Buat skrip traffic singkat (Manwe)
+
+Simpan file traffic.sh di /root/ node Manwe dan beri executable:
+
+```bash
+root@Manwe:~# nano traffic.sh
+
+root@Manwe:~# chmod +x traffic.sh
+
+root@Manwe:~# ./traffic.sh
+```
+
+Isi nano traffic.sh ada di link file zip
+
+* Packet capture (Wireshark)
+
+Jalankan Wireshark di GNS3 Web/Client dan capture link antara Manwe ↔ Eru. Terapkan display filter untuk menampilkan traffic berasal dari atau menuju IP Manwe. Simpan hasil capture
