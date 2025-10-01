@@ -98,3 +98,9 @@ iface eth0 inet static
 
 Setelah edit: Apply → restart node (mastiinnya pake `telnet 10.15.43.32 [port]` & `ip a`)
 
+<img width="1233" height="772" alt="Screenshot 2025-09-30 230740" src="https://github.com/user-attachments/assets/cacf34e8-4b44-4de5-bd33-6c9c040cd028" />
+
+<img width="1538" height="754" alt="Screenshot 2025-09-30 231046" src="https://github.com/user-attachments/assets/62a47074-2ce1-46e8-a058-e9b3d7bcdb37" />
+
+
+
