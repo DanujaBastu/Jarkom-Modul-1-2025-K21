@@ -184,3 +184,113 @@ Isi nano traffic.sh ada di link file zip
 * Packet capture (Wireshark)
 
 Jalankan Wireshark di GNS3 Web/Client dan capture link antara Manwe ↔ Eru. Terapkan display filter untuk menampilkan traffic berasal dari atau menuju IP Manwe. Simpan hasil capture
+
+<img width="898" height="159" alt="Screenshot 2025-10-01 223437" src="https://github.com/user-attachments/assets/6bd7caec-edd7-4f48-a86e-e9d3e1dde3a2" />
+
+7. Untuk meningkatkan keamanan, **Eru** memutuskan untuk membuat sebuah **FTP Server** di node miliknya. Lakukan konfigurasi **FTP Server** pada node **Eru**. Buat dua user baru: ainur dengan hak akses **write&read** dan **melkor** tanpa hak akses sama sekali ke direktori **shared**. Buktikan hasil tersebut dengan membuat file teks sederhana kemudian akses file tersebut menggunakan kedua user.
+
+* Uji FTP
+
+Instal vsftpd
+
+```bash
+apt-get update
+
+apt-get install vsftpd
+```
+
+Buat directory & menamba user
+
+```bash
+mkdir -p /var/ftp/shared
+
+adduser ainur
+
+adduser melkor
+
+nano /etc/vsftpd.conf
+```
+
+Pastikan baris-baris berikut ada dan tidak diawali tanda #:
+
+```bash
+local_enable=YES
+write_enable=YES
+chroot_local_user=YES
+allow_writeable_chroot=YES
+local_root=/var/ftp/shared
+userlist_enable=YES
+userlist_file=/etc/vsftpd.userlist
+userlist_deny=NO
+nano /etc/vsftpd.userlist(isi dengan ainur)
+```
+
+Membuat grup khusus untuk ainur
+
+```bash
+addgroup ftpaccess
+
+adduser ainur ftpaccess
+
+chgrp ftpaccess /var/ftp/shared/
+
+chmod 775 /var/ftp/shared/
+```
+
+Menjalankan vstpd
+
+```bash
+service vsftpd restart
+```
+
+Install ftp di node
+
+```bash
+apt-get update
+
+apt-get install ftp
+
+echo "Ini adalah file bukti dari Ainur" > file_bukti.txt
+```
+
+Login ke user ainur
+
+```bash
+ftp 10.74.1.1
+
+put file_bukti.txt
+
+ftp> ls
+
+ftp> quit
+
+ftp 10.74.1.1
+
+Malkor
+```
+
+8. **Ulmo**, sebagai penjaga perairan, perlu mengirimkan data ramalan cuaca ke node **Eru**. Lakukan koneksi sebagai client dari node **Ulmo** ke FTP Server **Eru** menggunakan user **ainur**. **Upload** sebuah file berikut (link file). Analisis proses ini menggunakan **Wireshark** dan identifikasi perintah FTP yang digunakan untuk proses upload.
+
+* Upload & download bukti, dan ubah hak akses
+
+```bash
+wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=11ra_yTV_adsPIXeIPMSt0vrxCBZu0r33' -O cuaca.zip
+```
+
+Ke gns3 client, lalu membuka wireshark dari situ dengan klik kanan lalu capture di connection antara switch dengan ulmo
+Kembali ke terminal lalu masuk ke ftp `ftp 10.74.2.1`.
+
+Login ke Ainur, lalu jalankan. `put cuaca.zip`
+
+Setelah itu kembali ke wireshark dan melakukan display filter yaitu `ftp || ftp-data`
+Berikut adalah hasilnya
+
+<img width="893" height="113" alt="image" src="https://github.com/user-attachments/assets/00e26d68-048e-46b7-a25e-c961f90ec1bf" />
+
+Untuk double check, bisa kembali ke terimal dan ke bagian eru lalu jalankan 
+
+```bash
+ls -l /var/ftp/shared
+```
+
+9. **Eru** ingin membagikan "Kitab Penciptaan" di (link file) kepada **Manwe**. Dari FTP Server **Eru**, **download** file tersebut ke node **Manwe**. Karena **Eru** merasa Kitab tersebut sangat penting maka ia mengubah akses user **ainur** menjadi **read-only**. Gunakan Wireshark untuk memonitor koneksi, identifikasi perintah FTP yang digunakan, dan uji akses user **ainur**.
