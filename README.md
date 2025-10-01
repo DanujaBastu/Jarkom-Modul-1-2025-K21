@@ -15,7 +15,7 @@ Member :
 
 2. Karena menurut **Eru** pada saat itu Arda (Bumi) masih terisolasi dengan dunia luar, maka buat agar **Eru** dapat tersambung ke internet.
 
-**- Tes awal dengan cek koneksi & akses internet (tes awal)**
+**-Tes awal dengan cek koneksi & akses internet (tes awal)**
 
 Telnet ke node (contoh Eru):
 
@@ -37,7 +37,7 @@ Jika ping google.com berhasil, node punya akses internet.
 
 3. Sekarang pastikan agar setiap Ainur (**Client**) dapat terhubung satu sama lain.
 
-**- Set konfigurasi interface**
+**-Set konfigurasi interface**
 
 **Eru**
 
