@@ -294,3 +294,35 @@ ls -l /var/ftp/shared
 ```
 
 9. **Eru** ingin membagikan "Kitab Penciptaan" di (link file) kepada **Manwe**. Dari FTP Server **Eru**, **download** file tersebut ke node **Manwe**. Karena **Eru** merasa Kitab tersebut sangat penting maka ia mengubah akses user **ainur** menjadi **read-only**. Gunakan Wireshark untuk memonitor koneksi, identifikasi perintah FTP yang digunakan, dan uji akses user **ainur**.
+
+```bash
+wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=11ua2KgBu3MnHEIjhBnzqqv2RMEiJsILY' -O
+
+/var/ftp/shared/Kitab_Penciptaan.zip
+
+sudo chmod 755 /var/ftp/shared/
+```
+
+Lalu melakukan capture dari gns client dengan node dari manwe ke switch
+
+Selanjutnya melakukan login ke ainur melalui ftp
+
+```bash
+ftp 10.74.1.1
+
+ftp> get Kitab_Penciptaan.zip
+```
+
+Lalu ke wireshark dan melakukan display filter dengan filter `(ftp || ftp-data)`. Setelah tiu akan mendapatkan
+
+<img width="898" height="119" alt="Screenshot 2025-10-03 095036" src="https://github.com/user-attachments/assets/13bd1e4e-4302-4b02-b12e-ad6c2574220e" />
+
+Untuk mengetest ainur di read only, kita menggunakan 
+
+```bash
+sudo chmod 755 /var/ftp/shared/upload/
+```
+
+Lalu kita bisa check dengan `ftp> get Kitab_Penciptaan.txt` di ftp ainur seperti yang ada di bawah ini
+
+<img width="450" height="184" alt="Screenshot 2025-10-03 095322" src="https://github.com/user-attachments/assets/af03f8d2-9fac-4493-ae49-abd44e98b1d1" />
