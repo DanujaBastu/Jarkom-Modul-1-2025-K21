@@ -313,7 +313,7 @@ ftp 10.74.1.1
 ftp> get Kitab_Penciptaan.zip
 ```
 
-Lalu ke wireshark dan melakukan display filter dengan filter `(ftp || ftp-data)`. Setelah tiu akan mendapatkan
+Lalu ke wireshark dan melakukan display filter dengan filter `(ftp || ftp-data)`. Setelah itu akan mendapatkan
 
 <img width="898" height="119" alt="Screenshot 2025-10-03 095036" src="https://github.com/user-attachments/assets/13bd1e4e-4302-4b02-b12e-ad6c2574220e" />
 
