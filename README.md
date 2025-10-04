@@ -389,6 +389,9 @@ ssh test@[IP Prefix_Eru] #Pake IP Prefix_Eru di sisi Switch2, karena Varda terhu
 
 <img width="1692" height="467" alt="image" src="https://github.com/user-attachments/assets/00eb9979-bc83-4d4d-96e9-544275dfb0bc" />
 
+<img width="1919" height="737" alt="Screenshot 2025-10-04 222759" src="https://github.com/user-attachments/assets/edd37e7a-f907-4db2-b32f-00458e9a5e67" />
+
+<img width="1917" height="735" alt="Screenshot 2025-10-04 222814" src="https://github.com/user-attachments/assets/20dd86bb-aa4e-489f-937b-f938efc23e51" />
 
 Di Wireshark, gunakan display filter
 
@@ -397,3 +400,11 @@ ssh || tcp.port == 22
 ```
 
 <img width="1919" height="737" alt="image" src="https://github.com/user-attachments/assets/814fbc16-7a49-49bc-9478-4a108086106a" />
+
+Setelah di analisis perbedaan telnet dan SSH di enkripsi. Jika di telnet tidak ada (plain text), sedangkan di SSH ada (encrypted).
+
+Username dan password SSH tidak dapat dilihat seperti pada sesi Telnet karena menggunakan enkripsi dengan langkah:
+
+* Key Exchange: Client dan server bertukar kunci enkripsi
+* Authentication: Username dan password dikirim dalam bentuk terenkripsi
+* Session: Semua data komunikasi dienkripsi end-to-end
