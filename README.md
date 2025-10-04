@@ -369,7 +369,7 @@ Di Wireshark, gunakan display filter
 ```bash
 telnet
 ```
-
+dan klik kanan di salah satu line lalu klik follow -> tcp streams, maka akan muncul gambar ini yang mana menunjukan username dan passwordnya 
 ![WhatsApp Image 2025-10-04 at 23 51 37_0ee09453](https://github.com/user-attachments/assets/f968ae0a-1ee9-4809-80e4-bf36cbd5e399)
 
 
