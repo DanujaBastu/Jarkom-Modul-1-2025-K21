@@ -358,27 +358,42 @@ nc -zv [IP Prefix_Melkor] 666
 
 Install SSH di Eru dan Varda
 
+Di Eru
+
 ```bash
 apt-get update
 apt-get install openssh-server -y
 service ssh start
 ```
 
+Di Varda
+
 ```bash
 apt-get update
 apt-get install openssh-client -y
 ```
 
-Buat user untuk testing
+Buat user untuk testing 
+
+```bash
+adduser test
+
+echo "test:[password]" | chpasswd
+```
 
 Lakukan koneksi SSH dari Varda ke Eru
 
 ```bash
-ssh test@[IP_Eru]
+ssh test@[IP Prefix_Eru] #Pake IP Prefix_Eru di sisi Switch2, karena Varda terhubung ke Switch2
 ```
+
+<img width="1692" height="467" alt="image" src="https://github.com/user-attachments/assets/00eb9979-bc83-4d4d-96e9-544275dfb0bc" />
+
 
 Di Wireshark, gunakan display filter
 
 ```bash
 ssh || tcp.port == 22
 ```
+
+<img width="1919" height="737" alt="image" src="https://github.com/user-attachments/assets/814fbc16-7a49-49bc-9478-4a108086106a" />
