@@ -338,16 +338,31 @@ ping -c 100 10.74.1.1 #di manwe
 ```bash
 apt-get update
 
-apt-get install telnetd -y
+apt-get install xinetd telnetd -y
 ```
-
-Buat user `Adduser`, lalu mulai capture
-
+Lalu kita buat file telnet sendiri dengan konfigurasi ini
 ```bash
-telnet <IP_Address_Melkor>
+nano /etc/xinetd.d/telnet
+```
+lalu isi dengan
+```bash
+service telnet { disable = no flags = REUSE socket_type = stream wait = no user = root server = /usr/sbin/in.telnetd log_on_failure += USERID }
+```
+lalu jalankan severnya 
+```bash
+service xinetd restart
+```
+Buat user `Adduser` dengan nama dan password bebas, disini kami menggunakan
+username : eru_spy 
+password : 123
+lalu mulai capture di wireshark
+
+setelah itu kita login ke eru_spy di node eru
+```bash
+telnet 10.74.2.1
 ```
 
-Login ke user baru, setelah itu stop capture
+Login ke user baru, setelah itu quit dan stop capture
 
 Di Wireshark, gunakan display filter
 
