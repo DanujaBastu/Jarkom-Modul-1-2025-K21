@@ -374,7 +374,7 @@ Buat user untuk testing
 Lakukan koneksi SSH dari Varda ke Eru
 
 ```bash
-ssh testuser@[IP_Eru]
+ssh test@[IP_Eru]
 ```
 
 Di Wireshark, gunakan display filter
