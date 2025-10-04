@@ -329,5 +329,56 @@ Lalu kita bisa check dengan `ftp> get Kitab_Penciptaan.txt` di ftp ainur seperti
 
 12. **Eru** mencurigai **Melkor** menjalankan beberapa layanan terlarang di node-nya. Lakukan pemindaian port sederhana dari node Eru ke node **Melkor** menggunakan **Netcat (nc)** untuk memeriksa port **21**, **80**, dalam keadaan terbuka dan port rahasia **666** dalam keadaan tertutup.
 
+Pastikan nc (netcat) terpasang , jika belum ada:
+
+```bash
+apt-get update
+apt-get install netcat -y
+```
+
+Buka port 21 (FTP) & port 80 (HTTP)
+
+```bash
+nc -l -p 21 &
+
+nc -l -p 80 &
+```
+
+Cek port 21 (open), 80 (open), 666 (closed)
+
+```bash
+nc -zv [IP Prefix_Melkor] 21
+
+nc -zv [IP Prefix_Melkor] 80
+
+nc -zv [IP Prefix_Melkor] 666
+```
+
 13. Setelah insiden penyadapan Telnet, **Eru** memerintahkan semua koneksi administratif harus menggunakan **SSH (Secure Shell)** untuk mengamankan jaringan. Lakukan koneksi SSH dari node **Varda** ke **Eru**. Tangkap sesi tersebut menggunakan **Wireshark**. Analisis dan jelaskan mengapa username dan password tidak dapat dilihat seperti pada **sesi Telnet**. Tunjukkan paket-paket terenkripsi dalam hasil capture sebagai bukti keamanan SSH.
 
+Install SSH di Eru dan Varda
+
+```bash
+apt-get update
+apt-get install openssh-server -y
+service ssh start
+```
+
+```bash
+apt-get update
+apt-get install openssh-client -y
+```
+
+Buat user untuk testing
+
+Lakukan koneksi SSH dari Varda ke Eru
+
+```bash
+ssh testuser@[IP_Eru]
+```
+
+Di Wireshark, gunakan display filter
+
+```bash
+ssh || tcp.port == 22
+```
