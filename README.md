@@ -326,3 +326,8 @@ sudo chmod 755 /var/ftp/shared/upload/
 Lalu kita bisa check dengan `ftp> get Kitab_Penciptaan.txt` di ftp ainur seperti yang ada di bawah ini
 
 <img width="450" height="184" alt="Screenshot 2025-10-03 095322" src="https://github.com/user-attachments/assets/af03f8d2-9fac-4493-ae49-abd44e98b1d1" />
+
+12. **Eru** mencurigai **Melkor** menjalankan beberapa layanan terlarang di node-nya. Lakukan pemindaian port sederhana dari node Eru ke node **Melkor** menggunakan **Netcat (nc)** untuk memeriksa port **21**, **80**, dalam keadaan terbuka dan port rahasia **666** dalam keadaan tertutup.
+
+13. Setelah insiden penyadapan Telnet, **Eru** memerintahkan semua koneksi administratif harus menggunakan **SSH (Secure Shell)** untuk mengamankan jaringan. Lakukan koneksi SSH dari node **Varda** ke **Eru**. Tangkap sesi tersebut menggunakan **Wireshark**. Analisis dan jelaskan mengapa username dan password tidak dapat dilihat seperti pada **sesi Telnet**. Tunjukkan paket-paket terenkripsi dalam hasil capture sebagai bukti keamanan SSH.
+
