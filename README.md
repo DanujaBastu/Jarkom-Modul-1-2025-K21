@@ -327,7 +327,35 @@ Lalu kita bisa check dengan `ftp> get Kitab_Penciptaan.txt` di ftp ainur seperti
 
 <img width="450" height="184" alt="Screenshot 2025-10-03 095322" src="https://github.com/user-attachments/assets/af03f8d2-9fac-4493-ae49-abd44e98b1d1" />
 
-12. **Eru** mencurigai **Melkor** menjalankan beberapa layanan terlarang di node-nya. Lakukan pemindaian port sederhana dari node Eru ke node **Melkor** menggunakan **Netcat (nc)** untuk memeriksa port **21**, **80**, dalam keadaan terbuka dan port rahasia **666** dalam keadaan tertutup.
+10. **Melkor** yang marah karena tidak diberi akses, mencoba melakukan serangan dengan mengirimkan banyak sekali request ke server **Eru**. Gunakan command **ping** dari node **Melkor** ke node **Eru** dengan jumlah paket yang tidak biasa (spam ping misalnya 100 paket). Amati hasilnya, apakah ada packet loss? Catat average round trip time untuk melihat apakah serangan tersebut mempengaruhi kinerja Eru.
+
+```bash
+ping -c 100 10.74.1.1 #di manwe
+```
+
+11. Sebelum era koneksi aman, Eru sering menyelinap masuk ke wilayah Melkor. Eru perlu masuk ke node tersebut untuk memeriksa konfigurasi, namun ia tahu Melkor mungkin sedang memantau jaringan. Buktikan kelemahan protokol Telnet dengan membuat akun dan password baru di node Melkor kemudian menangkap sesi login Eru ke node Melkor menggunakan Wireshark. Tunjukkan bagaimana username dan password dapat terlihat sebagai plain text.
+
+```bash
+apt-get update
+
+apt-get install telnetd -y
+```
+
+Buat user `Adduser`, lalu mulai capture
+
+```bash
+telnet <IP_Address_Melkor>
+```
+
+Login ke user baru, setelah itu stop capture
+
+Di Wireshark, gunakan display filter
+
+```bash
+telnet
+```
+
+13. **Eru** mencurigai **Melkor** menjalankan beberapa layanan terlarang di node-nya. Lakukan pemindaian port sederhana dari node Eru ke node **Melkor** menggunakan **Netcat (nc)** untuk memeriksa port **21**, **80**, dalam keadaan terbuka dan port rahasia **666** dalam keadaan tertutup.
 
 Pastikan nc (netcat) terpasang , jika belum ada:
 
