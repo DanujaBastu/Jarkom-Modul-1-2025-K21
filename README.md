@@ -355,7 +355,10 @@ Di Wireshark, gunakan display filter
 telnet
 ```
 
-13. **Eru** mencurigai **Melkor** menjalankan beberapa layanan terlarang di node-nya. Lakukan pemindaian port sederhana dari node Eru ke node **Melkor** menggunakan **Netcat (nc)** untuk memeriksa port **21**, **80**, dalam keadaan terbuka dan port rahasia **666** dalam keadaan tertutup.
+![WhatsApp Image 2025-10-04 at 23 51 37_0ee09453](https://github.com/user-attachments/assets/f968ae0a-1ee9-4809-80e4-bf36cbd5e399)
+
+
+12. **Eru** mencurigai **Melkor** menjalankan beberapa layanan terlarang di node-nya. Lakukan pemindaian port sederhana dari node Eru ke node **Melkor** menggunakan **Netcat (nc)** untuk memeriksa port **21**, **80**, dalam keadaan terbuka dan port rahasia **666** dalam keadaan tertutup.
 
 Pastikan nc (netcat) terpasang , jika belum ada:
 
